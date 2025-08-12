@@ -1,0 +1,140 @@
+@font-face {
+    font-family: "Playwrite AU QLD", sans-serif;
+    src: url(./assets/fonts/PlaywriteAUQLD-VariableFont_wght.ttf);
+}
+
+* {
+    font-family: "Playwrite AU QLD", sans-serif;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: clamp(2rem, calc(7vw + 1rem), 5rem);
+    background: black;
+    color: white;
+    border-radius: 10px;
+    margin-top: 40px;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: clamp(310px, 60%, 60%);
+    /*min size, preferred size -> calc() to add a fixed
+    unit (rem) to a relative unit (vw) so if you zoom in and out h1 zooms with, max unit */
+    /* following coming just some foolishness */
+    position: relative;
+    /*to make room for after element*/
+}
+
+@property --angle { /*create a css-variable or custom property to use as a variable angle in the conic gradient*/
+    syntax: "<angle>"; /*has to be a number followed by "deg"*/
+    initial-value: 0deg;
+    inherits: false;
+}
+
+h1::after,
+h1::before {
+    content: '';
+    position: absolute;
+    /*push the element exactly on top of original h1 element */
+    height: 100%;
+    /*same height as h1*/
+    width: 100%;
+    /*same width as h1 */
+    z-index: -1;
+    /*push the element behind h1 with the negativ z-index */
+    padding: 3px;
+    border-radius: 10px;
+    background-image: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+    /*degree of css variable decides
+     where transparency starts at the element*/
+    /*conic gradient same as linear but goes 
+    clockwise (360 degree) // can have multiple different colors */
+    /*possible colors: #ff4545, #00ff99, #006aff, #ff0095, #ff4545 */
+    animation: 3s spin linear infinite; /*defines the animation / spin gets later defined */
+}
+
+h1::before {
+    /*second element before the h1 */
+    filter: blur(1.5rem);
+    /*tributes glow effect of h1 element */
+    opacity: 0.5;
+    /*reduces "glow" width */
+}
+
+@keyframes spin {   /*defines spin used in animation */
+    from {
+        --angle: 0deg; /*starting angle */
+    }
+    to {
+        --angle: 360deg; /*ending angle */
+    }
+}
+
+:root {
+    counter-reset: headings;
+}
+
+h2 {
+    text-align: center;
+    background: linear-gradient(to right, red, blue);
+    background-clip: text;
+    /* background will only be where there is text */
+    color: transparent;
+    counter-increment: headings;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+h2::before {
+    content: counter(headings) ".";
+    padding-right: 3px;
+}
+
+.Notes  {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 16px;
+    gap: 8px;
+
+}
+
+.note_design {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: min(20px, 2%);
+    /* returns the value which is smaller 
+    -> more easy to create responsivness without media query*/
+    background-color: rgb(124, 209, 212);
+    border-radius: 5px;
+    text-align: center;
+    word-break: break-word;
+    max-width: 80%;
+}
+
+/* max () always returns the bigger value. clamp () retunrs 3 values: width: clamp(400px, 50vw, 800px) ->
+min value, preferred value, max value */
+.nav_buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+#note_Input {
+    resize: both;
+    /* need to work on this, cause not working*/
+}

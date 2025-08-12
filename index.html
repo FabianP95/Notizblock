@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,22 +12,32 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./style/standard.css">
     <link rel="stylesheet" href="./style/note.css">
-    <link rel="stylesheet" href="./style/fonts.css">
     <link rel="stylesheet" href="./style/assets.css">
 </head>
+
 <body onload="init()">
     <h1>Notizblock</h1>
-    <input id="note_Input" type="text">
-    <button  onclick="addNote()">Notiz speichern</button>
+    <section class="input">
+        <p>Content</p>
+        <input id="note_Input" type="text">
+        <button onclick="addNote()">Notiz speichern</button>
+    </section>
     <h2>Notes</h2>
-    <div id="content">
-        
+    <div class="Notes" id="content">
+
+
+
+    </div>
+    <h2>Archive</h2>
+    <div class="Notes" id="archive_content">
+
 
     </div>
     <h2>Trash</h2>
-    <div id="trash_content">
-        
+    <div class="Notes" id="trash_content">
+
 
     </div>
 </body>
+
 </html>
